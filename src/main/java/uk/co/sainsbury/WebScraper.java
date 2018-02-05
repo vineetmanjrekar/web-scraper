@@ -18,11 +18,17 @@ public class WebScraper
     URL url;
     HtmlPage page;
 
-    public WebScraper(String pageUrl) throws IOException
+    public WebScraper(String pageUrl)
     {
         webClient.getOptions().setJavaScriptEnabled(false);
-        url = new URL(pageUrl);
-        page = (HtmlPage)webClient.getPage(url);
+        try
+        {
+            url = new URL(pageUrl);
+            page = (HtmlPage) webClient.getPage(url);
+        } catch (IOException e)
+        {
+            System.err.println("Invalid URL for scraping");
+        }
     }
 
     public int getItemCount()
@@ -30,7 +36,8 @@ public class WebScraper
         String headingTitle = page.getElementById("resultsHeading").getTextContent();
         Pattern p = Pattern.compile("\\d+");
         Matcher m = p.matcher(headingTitle);
-        while (m.find()) {
+        while (m.find())
+        {
             return Integer.parseInt(m.group(0));
         }
         return 0;
