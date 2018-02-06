@@ -1,6 +1,7 @@
 package uk.co.sainsbury;
 
 import org.junit.Test;
+import uk.co.sainsbury.domain.Result;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -16,22 +17,22 @@ public class BerriesPageTest
 
     public static final String BERRIES_URL = "https://jsainsburyplc.github.io/serverside-test/site/www.sainsburys.co.uk/webapp/wcs/stores/servlet/gb/groceries/berries-cherries-currants6039.html";
 
-    WebScraper webScraper = new WebScraper(BERRIES_URL);
 
 
     @Test
-    public void testThatInvalidUrlWillResultInErrorOutput() {
+    public void testThatInvalidUrlWillResultInErrorOutput()
+    {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setErr(new PrintStream(outContent));
 
-        webScraper = new WebScraper("invald url");
+        WebScraper webScraper = new WebScraper("invald url");
 
         assertEquals("Invalid URL for scraping\n", outContent.toString());
     }
 
-    @Test
     public void testThatBerriesPageHasItemCountOf17() throws IOException
     {
+        WebScraper webScraper = new WebScraper(BERRIES_URL);
         assert webScraper.getItemCount() == 17;
     }
 
@@ -40,6 +41,13 @@ public class BerriesPageTest
     public void testThatBerriesPageHasCorrectItems() throws IOException
     {
 
+        WebScraper webScraper = new WebScraper(BERRIES_URL);
+
+        Result result = webScraper.getItemsForUrl();
+        assert result.getResults().size() == 17;
+        assert result.getTotal() == 39.5;
+
     }
+
 
 }

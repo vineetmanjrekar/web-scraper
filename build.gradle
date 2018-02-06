@@ -2,12 +2,16 @@ group 'uk.co.sainsbury'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
+apply plugin: 'application'
 
 sourceCompatibility = 1.5
 
 repositories {
     mavenCentral()
 }
+
+mainClassName = "uk.co.sainsbury.Main"
+//args = [project.property('url')]
 
 dependencies {
 
