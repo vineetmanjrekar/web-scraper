@@ -2,19 +2,19 @@
 
 In project root:
 
-./gradlew cleanIdea idea
+<code>./gradlew cleanIdea idea</code>
 
-#To run build
-
-In project root:
-
-./gradlew clean build
-
-#To generate executable:
+# To run build
 
 In project root:
 
-./gradlew clean build distZip
+<code>./gradlew clean build</code>
+
+# To generate executable:
+
+In project root:
+
+<code>./gradlew clean build distZip</code>
 
 Then go to /build/distributions/
 
@@ -23,7 +23,7 @@ unzip the file web-scraper-1.0-SNAPSHOT.zip
 cd web-scraper-1.0-SNAPSHOT/bin
 
 
-Then run ./web-scraper <url>
+Then run  <code>./web-scraper URL_TO_SCRAPE</code>
 
 In this case:
 
